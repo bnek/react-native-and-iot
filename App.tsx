@@ -5,6 +5,8 @@ import {
   View,
   StatusBar,
   Text,
+  Button,
+  TextInput,
 } from 'react-native';
 import nodejs from 'nodejs-mobile-react-native';
 
@@ -36,6 +38,21 @@ class App extends Component<{}, { logs: string[]; message: string }> {
               ))}
             </View>
           </ScrollView>
+          <View>
+            <TextInput
+              placeholder="Type message here!"
+              onChangeText={(text: string) =>
+                this.setState({ ...this.state, message: text })
+              }
+              value={this.state.message}
+            />
+            <Button
+              title="send!"
+              onPress={() =>
+                nodejs.channel.send(this.state.message)
+              }
+            />
+          </View>
         </SafeAreaView>
       </>
     );
