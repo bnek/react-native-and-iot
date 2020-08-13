@@ -18,7 +18,7 @@ class App extends Component<{}, { logs: string[]; message: string }> {
     nodejs.start('main.js');
     nodejs.channel.addListener(
       'message',
-      (msg) => this.log(msg),
+      (msg) => this.log('from node-js: ' + msg),
       this,
     );
     this.log('done, waiting for messages from channel');
